@@ -2,12 +2,30 @@
 <html>
 <head>
     <title>CCleaner Extension</title>
+    <script type="text/javascript" src="popup.js"></script>
     <link type="text/css" rel="stylesheet" href="styles/popup.css"/>
 </head>
 <body>
-    <div>
-        <img src="img/on-off.png" id="button-on-of" >
-        <img src="">
+<div>
+    <div class="container">
+        <button id="on-button" onclick="onoff();"><img id="imgOnOffButton" src="img/on-off.png"></button>
     </div>
+
+    <script>
+    function onoff(){
+    var image = document.getElementById("imgOnOffButton");
+    if(image.src == "img/on-off.png"){
+        image.src = "img/on-off2.png";
+    } else {
+        image.src = "img/on-off.png";
+    }}
+
+    </script>
+
+    <div class="center">
+        <img id="top" src="img/corona.png" height="20px">
+        <img id="settings" src="img/settings.png" height="20px">
+    </div>
+</div>
 </body>
 </html>
