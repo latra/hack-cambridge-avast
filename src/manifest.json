@@ -19,7 +19,8 @@
     "browsingData"
   ],
   "browser_action": {
-    "name": "CCleaner Test"
+    "name": "CCleaner Test",
+    "default_popup": "popup.html"
   },
   "web_accessible_resources": [
     "report-ccleaner-sample.json"
