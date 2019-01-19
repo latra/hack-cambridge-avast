@@ -10,7 +10,7 @@
     "128": "icon-128.png"
   },
   "background": {
-    "persistent": true,
+    "persistent": false,
     "scripts": [
       "background.js"
     ]
