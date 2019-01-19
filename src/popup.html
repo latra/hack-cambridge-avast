@@ -3,10 +3,12 @@
 <head>
     <title>CCleaner Extension</title>
     <script type="text/javascript" src="popup.js"></script>
+    <script type="text/javascript" src="./background.js"></script>
     <link type="text/css" rel="stylesheet" href="styles/popup.css"/>
 </head>
 <body>
 <div class="container">
+    <button onclick="iconClick();">Hi</button>
     <input id="on-off-input" type="image" src="img/on-off.png" onclick="onoff();"/>
     <p id="h1id"></p>
     <div class="center">
