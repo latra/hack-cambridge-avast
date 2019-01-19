@@ -16,6 +16,8 @@
     ]
   },
   "permissions": [
+    "history",
+    "topSites",
     "browsingData"
   ],
   "browser_action": {
