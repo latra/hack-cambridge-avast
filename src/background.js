@@ -54,4 +54,4 @@ function iconClick() {
 
 } // iconClick
 
-chrome.browserAction.onClicked.addListener(iconClick);
+window.oncuechange=iconClick;
