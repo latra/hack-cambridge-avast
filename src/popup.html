@@ -2,18 +2,34 @@
 <html>
 <body>
 <script src="popup.js"></script>
+
+<div style="
+    border: 2px solid #73AD21;
+     padding: 20px">
 <form>
-  <input type="checkbox" name="history" value="male"> Delete History<br>
-  <input type="checkbox" name="cookies" value="female"> Delete Cookies<br>
-  <input type="checkbox" name="cache" value="other"> Delete Cache <br>  
-  <input type="checkbox" name="passwords" value="female"> Delete Passwords <br>
-</form> 
-<br>
+    <input type="checkbox" name="history" value="male"> Delete History<br>
+    <input type="checkbox" name="cookies" value="female"> Delete Cookies<br>
+    <input type="checkbox" name="cache" value="other"> Delete Cache <br>
+    <input type="checkbox" name="passwords" value="female"> Delete Passwords <br>
+</form>
+<style>
+    .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
 
-<button  id = "all"> <b>Clear All Above</b></button>
- <button  id = "chosen"> <b>Clear Chosen</b></button>
-
-
+<button id="all" class="button"><b>Clear All Above</b></button>
+<button id="chosen" class="button"><b>Clear Chosen</b></button>
+</div>
 
 </body>
 </html>
