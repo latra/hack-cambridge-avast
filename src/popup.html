@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="popup.css">
+    <!-- Material icons-->
+    <nav>
+        <div class="nav-wrapper" style="background-color: #214162; margin-right: 0px;
+      margin-left: 0px;">
+            <a href="#" class="brand-logo" style="margin-top: 5px; margin-bottom: 5px"><img src="icon-48.png"></a>
+        </div>
+    </nav>
+</head>
+<body style="height: 375px; width: 250px; margin-top: 0px;  background-color: #ECECEC">
+
 <script src="popup.js"></script>
-
-<div style="
-    border: 2px solid #73AD21;
-     padding: 20px">
-<form>
-    <input type="checkbox" name="history" value="male"> Delete History<br>
-    <input type="checkbox" name="cookies" value="female"> Delete Cookies<br>
-    <input type="checkbox" name="cache" value="other"> Delete Cache <br>
-    <input type="checkbox" name="passwords" value="female"> Delete Passwords <br>
-</form>
-<style>
-    .button {
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-    }
-</style>
-
-<button id="all" class="button"><b>Clear All Above</b></button>
-<button id="chosen" class="button"><b>Clear Chosen</b></button>
+<div style="margin:3px"></div>
+<div style="margin-left:5px; margin-right: 5px;">
+    <div style="text-align: center">
+    <p style="font-size: 16px; font-family: Tahoma">Choose something to delete:</p></div>
+<form action="#" style="margin-top: 10px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      margin-left: 10px;
+      font-family: Tahoma;
+      font-size: 16px">
+    <p>
+        <label>
+            <input type="checkbox" id="history"/>
+            <span style=";
+      color: black">Delete History</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" id="cookies"/>
+            <span style=";
+      color: black">Delete Cookies</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" id="cache"/>
+            <span style=";
+      color: black">Delete Cache</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" id="passwords"/>
+            <span style=";
+      color: black">Delete Passwords</span>
+        </label>
+    </p>
+</form></div>
+<div id="test" style="text-align: center; margin-bottom: 16px;">
+    <button id="all" class="waves-effect  waves-light btn-large "
+            style="background-color: #5281D7; border-radius: 10px;width: 80%"><b>Clear All Above</b></button>
+    <p></p>
+    <button id="chosen" class="waves-effect waves-light btn-large "
+            style="background-color: #5281D7; border-radius: 10px; width: 80%"><b>Clear Chosen</b></button>
 </div>
-
 </body>
 </html>
