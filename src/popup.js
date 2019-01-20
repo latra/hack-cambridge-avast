@@ -1,13 +1,15 @@
-var callback = function(){
+var callback = function(result){
     chrome.runtime.getPackageDirectoryEntry(function(root) {
-        root.getFile(chrome.browsingData, {}, function(fileEntry) {
+        root.getFile("report-ccleaner-sample.json", {}, function(fileEntry) {
           fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-              var jsonStr = this.result;
+	            document.getElementById('test2').innerHTML = result;
+              var jsonStr = result;
               var jsonObj = JSON.parse(jsonStr);
               console.log('Loaded sample object from file...');
               console.log(jsonObj);
+              document.getElementById('test2').innerHTML = jsonObj;
               chrome.browsingData.reportCleanResults(jsonStr);
             };
             reader.readAsText(file);
@@ -39,11 +41,48 @@ function clear()
 
 function clearAll()
 {
-    var time = getUserTime();
-    chrome.browsingData.removeHistory({"since": time}, callback);
-    chrome.browsingData.removeCookies({"since": time}, callback);
-    chrome.browsingData.removeCache({"since": time}, callback);
-    chrome.browsingData.removePasswords({"since": time}, callback);
+	var time = getUserTime();
+	
+	chrome.browsingData.remove({
+		"since": time,
+		//"till": oneDayAgo // custom for ASB
+	}, {
+		"appcache": true,
+		"cache": true,
+		"cacheStorage": true,
+		"cookies": true,
+		"downloads": true,
+		"fileSystems": true,
+		"formData": true,
+		"history": true,
+		"indexedDB": true,
+		"localStorage": true,
+		"pluginData": true,
+		"passwords": true,
+		"serverBoundCertificates": true,
+		"serviceWorkers": true,
+		"webSQL": true
+	}, function(result) {
+		
+		console.log('Clean completed!');
+
+		// send sample JSON to CCleaner results
+		chrome.runtime.getPackageDirectoryEntry(function(root) {
+			root.getFile("report-ccleaner-sample.json", {}, function(fileEntry) {
+				fileEntry.file(function(file) {
+					var reader = new FileReader();
+					reader.onloadend = function(e) {
+						var jsonStr = this.result;
+						var jsonObj = JSON.parse(jsonStr);
+						console.log('Loaded sample object from file...');
+						console.log(jsonObj);
+						chrome.browsingData.reportCleanResults(jsonStr);
+					};
+					reader.readAsText(file);
+				});
+			});
+		});
+	});
 }
 
 
