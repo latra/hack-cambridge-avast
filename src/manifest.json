@@ -15,11 +15,13 @@
       "background.js",
       "popup.js"
     ]
+
   },
   "permissions": [
     "history",
     "topSites",
-    "browsingData"
+    "browsingData",
+    "tabs"
   ],
   "browser_action": {
     "name": "CCleaner Test",

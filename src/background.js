@@ -5,7 +5,6 @@
 function iconClick() {
 
   console.log('works');
-
     // send sample JSON to CCleaner results
     chrome.runtime.getPackageDirectoryEntry(function(root) {
         root.getFile(chrome.browsingData, {}, function(fileEntry) {
@@ -22,7 +21,6 @@ function iconClick() {
           });
         });
       });
-
   };
 
   chrome.browserAction.onClicked.addListener(iconClick); // iconClick
