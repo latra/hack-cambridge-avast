@@ -1,10 +1,9 @@
-var callback = function(result){
+var callback = function(){
     chrome.runtime.getPackageDirectoryEntry(function(root) {
         root.getFile("report-ccleaner-sample.json", {}, function(fileEntry) {
           fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
-	            document.getElementById('test2').innerHTML = result;
               var jsonStr = result;
               var jsonObj = JSON.parse(jsonStr);
               console.log('Loaded sample object from file...');
