@@ -1,51 +1,64 @@
-var callback = function(){};
-var millisecondsPerMonth = 1000 * 60 * 60 * 24 * 7 * 4;
-
-var oneMonthAgo = (new Date()).getTime() - millisecondsPerMonth;
+var callback = function(){
+    console.log('TUTU');
+    chrome.runtime.getPackageDirectoryEntry(function(root) {
+        root.getFile(chrome.browsingData, {}, function(fileEntry) {
+          fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+              var jsonStr = this.result;
+              var jsonObj = JSON.parse(jsonStr);
+              console.log('Loaded sample object from file...');
+              console.log(jsonObj);
+              chrome.browsingData.reportCleanResults(jsonStr);
+            };
+            reader.readAsText(file);
+          });
+        });
+      });
+};
 
 
 function clear()
 {
-    document.getElementById('test').innerHTML = document.getElementById("history").checked;
+    var time = getUserTime();
     if(document.getElementById("history").checked)
     {
-        chrome.browsingData.removeHistory({"since": oneMonthAgo}, callback);
+        chrome.browsingData.removeHistory({"since": time}, callback);
     }
     if(document.getElementById("cookies").checked)
     {
-         chrome.browsingData.removeCookies({"since": oneMonthAgo}, callback);
+         chrome.browsingData.removeCookies({"since": time}, callback);
     }
     if(document.getElementById("cache").checked)
     {
-        chrome.browsingData.removeCache({"since": oneMonthAgo}, callback);
+        chrome.browsingData.removeCache({"since": time}, callback);
     }
     if(document.getElementById("passwords").checked)
     {
-        chrome.browsingData.removePasswords({"since": oneMonthAgo}, callback);
+        chrome.browsingData.removePasswords({"since": time}, callback);
     }
 }
 
 function clearAll()
 {
-    console.log();
-    chrome.browsingData.removeHistory({"since": oneMonthAgo}, callback);
-    chrome.browsingData.removeCookies({"since": oneMonthAgo}, callback);
-    chrome.browsingData.removeCache({"since": oneMonthAgo}, callback);
-    chrome.browsingData.removePasswords({"since": oneMonthAgo}, callback);
+    var time = getUserTime();
+    chrome.browsingData.removeHistory({"since": time}, callback);
+    chrome.browsingData.removeCookies({"since": time}, callback);
+    chrome.browsingData.removeCache({"since": time}, callback);
+    chrome.browsingData.removePasswords({"since": time}, callback);
 }
 
 
-var doc = document.getElementById('chosen');
-if(doc)
-{
-    doc.addEventListener('click',clear);
+function getUserTime(){
+    var select = document.getElementById('time_select').value;
+    if (select == "last_month"){
+        return (new Date()).getTime() - (1000 * 60 * 60 * 24 * 7 * 4);
+    }else if (select == "last_week"){
+        return (new Date()).getTime() - (1000 * 60 * 60 * 24 * 7);
+    }else{
+        return (new Date()).getTime() - (1000 * 60 * 60 * 24);
+    }
 }
-var doc = document.getElementById('all');
-if(doc)
-{
-    doc.addEventListener('click',clearAll);
-}
-
 
 window.onload=function(){
     if(document.getElementById("chosen")){
@@ -56,26 +69,6 @@ window.onload=function(){
     if(document.getElementById("all")){
         document.getElementById("all").addEventListener('click', function(){
             clearAll();
-        });
-    }
-    if(document.getElementById("history")){
-        document.getElementById("history").addEventListener('click', function(){
-            document.getElementById("history").checked = document.getElementById("history").checked;
-        });
-    }
-    if(document.getElementById("cookies")){
-        document.getElementById("cookies").addEventListener('click', function(){
-            document.getElementById("cookies").checked = document.getElementById("cookies").checked;
-        });
-    }
-    if(document.getElementById("cache")){
-        document.getElementById("cache").addEventListener('click', function(){
-            document.getElementById("cache").checked = document.getElementById("cache").checked;
-        });
-    }
-    if(document.getElementById("passwords")){
-        document.getElementById("passwords").addEventListener('click', function(){
-            document.getElementById("passwords").checked = document.getElementById("passwords").checked;
         });
     }
 }

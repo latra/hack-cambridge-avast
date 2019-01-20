@@ -2,6 +2,11 @@
 <html>
 <body>
 <script src="popup.js"></script>
+<select id="time_select">
+    <option value="last_month">Last month</option>
+    <option value="last_week">Last week</option>
+    <option value="last_day" selected>Last day</option>
+</select>
 <form>
   <input type="checkbox" id="history"> Delete History<br>
   <input type="checkbox" id="cookies"> Delete Cookies<br>
@@ -12,8 +17,6 @@
 <div id="test"></div>
 <button  id = "all"> <b>Clear All Above</b></button>
 <button  id = "chosen"> <b>Clear Chosen</b></button>
-
-
-
+<button  id = "power"><b>Turn on/off backend</b></button>
 </body>
 </html>

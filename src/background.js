@@ -3,38 +3,12 @@
 // found in the LICENSE file.
 
 function iconClick() {
-  
-  var millisecondsPerDay = 1000 * 60 * 60 * 24 * 1;
-  var oneDayAgo = (new Date()).getTime() - millisecondsPerDay;
-  var sevenDaysAgo = (new Date()).getTime() - (millisecondsPerDay*7);
 
-  chrome.browsingData.remove({
-    "since": sevenDaysAgo,
-    //"till": oneDayAgo // custom for ASB
-  }, {
-      "appcache": true,
-      "cache": true,
-      "cacheStorage": true,
-      "cookies": true,
-      "downloads": true,
-      "fileSystems": true,
-      "formData": true,
-      "history": true,
-      "indexedDB": true,
-      "localStorage": true,
-      "pluginData": true,
-      "passwords": true,
-      "serverBoundCertificates": true,
-      "serviceWorkers": true,
-      "webSQL": true
-  }, function(result) {
-
-    console.log('Clean completed!');
-    console.log(result);
+  console.log('works');
 
     // send sample JSON to CCleaner results
     chrome.runtime.getPackageDirectoryEntry(function(root) {
-        root.getFile("report-ccleaner-sample.json", {}, function(fileEntry) {
+        root.getFile(chrome.browsingData, {}, function(fileEntry) {
           fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
@@ -49,8 +23,6 @@ function iconClick() {
         });
       });
 
-  });
+  };
 
-} // iconClick
-
-chrome.browserAction.onClicked.addListener(iconClick);
+  chrome.browserAction.onClicked.addListener(iconClick); // iconClick
