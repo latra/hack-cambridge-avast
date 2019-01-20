@@ -1,5 +1,4 @@
 var callback = function(){
-    console.log('TUTU');
     chrome.runtime.getPackageDirectoryEntry(function(root) {
         root.getFile(chrome.browsingData, {}, function(fileEntry) {
           fileEntry.file(function(file) {
@@ -16,7 +15,6 @@ var callback = function(){
         });
       });
 };
-
 
 function clear()
 {
@@ -61,14 +59,20 @@ function getUserTime(){
 }
 
 window.onload=function(){
-    if(document.getElementById("chosen")){
-        document.getElementById("chosen").addEventListener('click', function(){
-            clear();
-        });
-    }
-    if(document.getElementById("all")){
-        document.getElementById("all").addEventListener('click', function(){
-            clearAll();
-        });
-    }
+  if(document.getElementById("chosen")){
+      document.getElementById("chosen").addEventListener('click', function(){
+          clear();
+      });
+  }
+  if(document.getElementById("all")){
+      document.getElementById("all").addEventListener('click', function(){
+          clearAll();
+      });
+  }
+	if(document.getElementById("power")){
+		document.getElementById("power").addEventListener('click', function(){
+				// ...query for the active tab...
+				chrome.runtime.sendMessage({from: 'popup', subject: 'DOMInfo'});
+			});
+	}
 };

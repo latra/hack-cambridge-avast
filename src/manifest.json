@@ -11,7 +11,7 @@
     "128": "icon-128.png"
   },
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": [
       "background.js",
       "popup.js"
@@ -22,7 +22,6 @@
     "history",
     "topSites",
     "browsingData",
-
     "tabs",
     "https://*.google.com/",
     "activeTab"
