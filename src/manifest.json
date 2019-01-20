@@ -16,11 +16,13 @@
       "background.js",
       "popup.js"
     ]
+
   },
   "permissions": [
     "history",
     "topSites",
     "browsingData",
+
     "tabs",
     "https://*.google.com/",
     "activeTab"
