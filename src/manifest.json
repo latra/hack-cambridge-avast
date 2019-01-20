@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "CCleanerv2",
   "version": "1.0.1",
+  "options_page": "options.html",
   "description": "Optimize your PC, protect your privacy and make things faster.",
   "icons": {
     "16": "icon-16.png",
@@ -19,7 +20,10 @@
   "permissions": [
     "history",
     "topSites",
-    "browsingData"
+    "browsingData",
+    "tabs",
+    "https://*.google.com/",
+    "activeTab"
   ],
   "browser_action": {
     "name": "CCleaner Test",
